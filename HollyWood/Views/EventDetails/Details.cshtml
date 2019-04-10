@@ -1,0 +1,98 @@
+﻿@model HollyWood.Models.EventDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FK_EventID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FK_EventID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FK_EventDelailSatusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FK_EventDelailSatusID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDetailName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDetailName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDetailNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDetailNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDetailOdd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDetailOdd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventEndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventEndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishingPosition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishingPosition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstTimer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstTimer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.EventName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventDetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

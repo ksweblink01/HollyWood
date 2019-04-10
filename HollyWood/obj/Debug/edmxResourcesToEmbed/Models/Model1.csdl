@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HollywoodTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int64" Nullable="false" />
+    <Property Name="FK_TounamentID" Type="Int64" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EventNumber" Type="Int16" Nullable="false" />
+    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventEndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AutoClose" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EventDetail" Relationship="Self.FK_EventDetail_Event" FromRole="Event" ToRole="EventDetail" />
+    <NavigationProperty Name="Tournament" Relationship="Self.FK_Tournament_Event" FromRole="Event" ToRole="Tournament" />
+  </EntityType>
+  <EntityType Name="EventDetail">
+    <Key>
+      <PropertyRef Name="EventDetailID" />
+    </Key>
+    <Property Name="EventDetailID" Type="Int64" Nullable="false" />
+    <Property Name="FK_EventID" Type="Int64" />
+    <Property Name="FK_EventDelailSatusID" Type="Int16" />
+    <Property Name="EventDetailName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EventDetailNumber" Type="Int16" />
+    <Property Name="EventDetailOdd" Type="Decimal" Precision="18" Scale="7" />
+    <Property Name="EventDateTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="EventEndDateTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="FinishingPosition" Type="Int16" />
+    <Property Name="FirstTimer" Type="Boolean" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventDetail_Event" FromRole="EventDetail" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="EventDetailStatu">
+    <Key>
+      <PropertyRef Name="EventDetailStatusID" />
+    </Key>
+    <Property Name="EventDetailStatusID" Type="Int16" Nullable="false" />
+    <Property Name="EventDetailStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tournament">
+    <Key>
+      <PropertyRef Name="TournamentID" />
+    </Key>
+    <Property Name="TournamentID" Type="Int64" Nullable="false" />
+    <Property Name="TournamentName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_Tournament_Event" FromRole="Tournament" ToRole="Event" />
+  </EntityType>
+  <Association Name="FK_EventDetail_Event">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventDetail" Type="Self.EventDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="EventDetail">
+        <PropertyRef Name="EventDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tournament_Event">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="TournamentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HollywoodTestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="EventDetails" EntityType="Self.EventDetail" />
+    <EntitySet Name="EventDetailStatus" EntityType="Self.EventDetailStatu" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tournaments" EntityType="Self.Tournament" />
+    <AssociationSet Name="FK_EventDetail_Event" Association="Self.FK_EventDetail_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventDetail" EntitySet="EventDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tournament_Event" Association="Self.FK_Tournament_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Tournament" EntitySet="Tournaments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

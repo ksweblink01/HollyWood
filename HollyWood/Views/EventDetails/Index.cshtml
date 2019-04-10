@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HollyWood.Models.EventDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FK_EventID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FK_EventDelailSatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDetailName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDetailNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDetailOdd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishingPosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstTimer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FK_EventID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FK_EventDelailSatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDetailName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDetailNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDetailOdd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventEndDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishingPosition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstTimer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event.EventName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventDetailID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventDetailID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventDetailID })
+        </td>
+    </tr>
+}
+
+</table>

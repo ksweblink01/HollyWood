@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HollyWood.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FK_TounamentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoClose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDetail.EventDetailName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tournament.TournamentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FK_TounamentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventEndDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoClose)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventDetail.EventDetailName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tournament.TournamentName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
+        </td>
+    </tr>
+}
+
+</table>
